@@ -29,14 +29,15 @@ public class NoticeController {
 	private ServletContext servletContext; // context path(webapp)를 찾음
 	
 	// 이름은 동일하게 하기를 권장
-	@RequestMapping("/noticeSelect.do")
+	@PostMapping("/noticeSelect.do")
 	public String noticeSelect(NoticeVO vo, Model model) {
-		vo.setNoticeId(25); // 강제로 하나의 레코드를 선택하기 위함
-		model.addAttribute("n", ns.noticeSelect(vo));
+		// vo.setNoticeId(25); // 강제로 하나의 레코드를 선택하기 위함
+		model.addAttribute("notices", ns.noticeSelect(vo));
+		ns.noticeHitUpdate(vo); // 조회수 증가
 		return "notice/noticeSelect";
 	}
 	
-	// 하나의 정보 보여줌
+	// 전체 목록
 	@GetMapping("/noticeSelectList.do")
 	public String noticeSelectList(Model model) {
 		model.addAttribute("notices", ns.noticeSelectList());
@@ -71,7 +72,7 @@ public class NoticeController {
 	}
 	
 	// 검색
-	@RequestMapping("/noticeSearch.do")
+	@RequestMapping("/noticeSearch.do") // ajax로 처리
 	// @RequestParam("key") String key, @RequestParam("val") String val 추가해야함
 	public String noticeSearch(NoticeVO vo, String key, String val, Model model) { 
 //		key = "1"; // title

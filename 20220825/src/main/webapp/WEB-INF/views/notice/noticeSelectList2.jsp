@@ -36,18 +36,19 @@ table th {
 </style>
 <script src="resources/js/jquery-3.6.0.min.js"></script>
 <body>
-	<div>
-		<h1>게시판 목록</h1>
-	</div>
+	<div><h1>게시판 목록</h1></div>
 	<div>
 		<table>
 			<tr>
-				<td width="70"><select id="key" name="key">
+				<td width="70">
+					<select id="key" name="key">
 						<option value="1">제목</option>
 						<option value="2">내용</option>
 						<option value="3">작성자</option>
-				</select></td>
-				<td width="100"><input type="text" id="val" name="val">
+					</select>
+				</td>
+				<td width="100">
+					<input type="text" id="val" name="val">
 				</td>
 				<td>
 					<button type="button" onclick="searchCall()">검색</button>&nbsp;
@@ -55,12 +56,11 @@ table th {
 				</td>
 			</tr>
 		</table>
-	</div>
-	<br>
-
+	</div><br>
+	
 	<!-- 넘어오는 컬럼명 그대로 대문자로 써야함 -->
-	<div id="list">
-		<table id = "tb">
+	<div>
+		<table>
 			<thead>
 				<tr>
 					<th>게시글번호</th>
@@ -71,7 +71,7 @@ table th {
 					<th>조회수</th>
 				</tr>
 			</thead>
-			<tbody id="list" name="list">
+			<tbody>
 				<c:if test="${empty notices}">
 					<tr>
 						<td colspan="6">게시글이 존재하지 않습니다.</td>
@@ -99,13 +99,43 @@ table th {
 	</div>
 
 	<script type="text/javascript">
-		// 상세보기
 		function noticeCall(id) {
 			frm.noticeId.value = id;
 			frm.action = "noticeSelect.do";
 			frm.submit();
 			// console.log(frm.noticeId.value);
 		}
+		
+		// ajax 검색처리
+		/* function searchCall() {
+			let key = document.getElementById("key").value;
+			let val = document.getElementById("val").value;
+			
+			// 자바스크립트 p247 참고
+			fetch("ajaxSearch.do", {
+				method : "post",
+				mode : "cors",
+				cache : "no-cache",
+				credentials : "same-origin",
+				headers : {
+					"Content-Type" : "application/x-www-form-urlencoded",
+				},
+				redirect : "follow",
+				referrer : "no-referrer",
+				body : "key=" + key + "&val=" + val
+			})
+			.then(response => response.json())
+			.then(data => htmlView(data)); // html로 convert할 함수(html convert method) 만들어줘야함
+		} */
+		
+		/* 
+		// json 타입으로 값을 전달할 때(권장하는 방식)
+		headers : {
+			"Content-Type" : "application/json",
+		},
+		body : JSON.stringfy({"key" : key, "val" : val}) */
+		
+		
 		
 		// ajax 검색처리
 		function searchCall() {
@@ -119,7 +149,7 @@ table th {
 				data : {"key" : key, "val" : val},
 				dataType : "json",
 				success : function(response) {
-					// console.log(response);
+					console.log(response);
 					htmlView(response);
 				},
 				error : function(err) {
@@ -127,25 +157,11 @@ table th {
 				}
 			})
 			
-			}
-			
 			function htmlView(data) {
 				// html로 변환해서 원하는 위치에 출력하도록 구현
-				$("[name='list']").remove(); // 기존 tbody 삭제
-				let tbody = $("<tbody name='list' />"); // 검색했을때 나올 tbody 새로 생성
-				$.each(data, function(index, item) {
-					let row = $("<tr />").append($("<td />").text(item.noticeId),
-										 		 $("<td />").text(item.noticeWriter),
-										 		 $("<td />").text(item.noticeTitle),	
-										 		 $("<td />").text(item.noticeAttach),
-										 		 $("<td />").text(item.noticeDate),
-										 		 $("<td />").text(item.noticeHit)
-					)
-					tbody.append(row);
-				})
-				$("#tb").append(tbody);
+				
 			}
-			
+		}
 	</script>
 </body>
 </html>

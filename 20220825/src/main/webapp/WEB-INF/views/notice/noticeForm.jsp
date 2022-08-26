@@ -53,7 +53,7 @@ table th {
 						<tr>
 							<th>내용</th>
 							<td colspan="3">
-								<textarea rows="10px" cols="82px" id="noticeTitle" name="noticeTitle"></textarea>
+								<textarea rows="10px" cols="82px" id="noticeSubject" name="noticeSubject"></textarea>
 							</td>
 						</tr>
 						<tr>
@@ -65,7 +65,8 @@ table th {
 					</table>
 				</div><br>
 				<input type="submit" value="등록">&nbsp;&nbsp;
-				<input type="reset" value="취소">
+				<input type="button" value="취소" onclick="location.href='noticeSelectList.do'">&nbsp;&nbsp;
+				<input type="reset" value="초기화">
 			</form>
 		</div>
 	</div>

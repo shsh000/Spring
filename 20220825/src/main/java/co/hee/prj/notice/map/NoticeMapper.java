@@ -10,7 +10,8 @@ import co.hee.prj.notice.service.NoticeVO;
 
 // noticeService와 동일
 public interface NoticeMapper {
-	@Select("select * from notice") // mapper.xml 에서 설정 안해줘도 됨(ibatis를 쓸때는 권장하지 않는 방식)
+	@Select("select * from notice order by notice_id DESC") // mapper.xml 에서 설정 안해줘도 됨(ibatis를 쓸때는 권장하지 않는 방식)
+	
 	// List Map 구조 사용할때 컬럼명 대문자로 써야함
 	List<Map<String, Object>> noticeSelectList(); // 전체 목록, 조인 또는 VO 객체를 만들지 않고 사용할 때
 
@@ -22,6 +23,9 @@ public interface NoticeMapper {
 
 	int noticeDelete(NoticeVO vo); // 삭제
 
+	// @Update("update notice set notice_hit = notice_hit + 1 where notice_id = #{noticeId}")
+	int noticeHitUpdate(NoticeVO vo); // 조회수 증가
+	
 	// 전달 인자가 두개 이상이면 @Param 써줘야함 => Mapper에서 인식하기 위함
 	List<NoticeVO> noticeSearch(@Param("key") String key, @Param("val") String val); // 검색
 }
