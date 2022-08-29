@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- https://tiles.apache.org/framework/tutorial/basic/pages.html 참고 -->
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+       
+<tiles-definitions>
+	<!-- 관리자 페이지 -->
+	<definition name="manager" template="/WEB-INF/views/layout/layout.jsp">
+		<put-attribute name="title" value="My Spring Web" />
+		<put-attribute name="header" value="/WEB-INF/views/layout/header.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/layout/side.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp" />
+	</definition>
+	<definition name="*/*" extends="manager">
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
+	</definition>
+	<!-- 관리자 페이지 -->
+	
+	<!-- user 페이지 -->
+	<!-- <definition name="myApp" template="/WEB-INF/views/layout/layoutUser.jsp">
+		<put-attribute name="title" value="My Spring Web" />
+		<put-attribute name="header" value="/WEB-INF/views/layout/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp" />
+	</definition>
+	<definition name="*/*" extends="myApp"> */* 이 경로로 올 때 myApp 참조
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
+	</definition> -->
+	<!-- user 페이지 -->
+	
+	<!-- tiles 타지않고 가는 방식(ex 로그인) -->
+	<!-- <definition name="noTiles" template="/WEB-INF/views/layout/layoutNoTiles.jsp">
+		<put-attribute name="title" value="My Spring Web" />
+		<put-attribute name="body" value="" />
+	</definition>
+	<definition name="*" extends="noTiles">
+		<put-attribute name="body" value="/WEB-INF/views/noTiles/{1}.jsp" />
+	</definition> -->
+	<!-- tiles 타지않고 가는 방식 -->
+	
+</tiles-definitions>
