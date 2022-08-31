@@ -128,6 +128,25 @@ table th {
 			})
 			
 			}
+		
+		/* function searchCall() {
+			let key = document.getElementById("key").value;
+			let val = document.getElementById("val").value;
+			let payment = {"key" : key, "val" : val}
+			
+			fetch("ajaxSearch.do", {
+				method : "post",
+				header : {
+					"Content-Type" : "application/x-www-form-urlencoded"
+					// "Content-Type" : "application/json"
+				},
+				body : "key = " + key + ", val = " + val
+				// body : JSON.stringify(payment)
+				// body : JSON.stringify({"key" : key, "val" : val})
+			})
+			.then(response => response.json())
+			.then(data => htmlView(data))
+			} */
 			
 			function htmlView(data) {
 				// html로 변환해서 원하는 위치에 출력하도록 구현

@@ -48,11 +48,20 @@
 		</dependency>
 
 
-		<!-- AspectJ -->
+		<!-- AspectJ(Aspectj runtimer, AOP 사용하기 위해선 AspectJ Weaver 필요) -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+		<!-- AspectJ Weaver -->
+		<!-- runtimer와 버전 맞춰줘야함 -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${org.aspectj-version}</version>
+			<scope>runtime</scope>
 		</dependency>
 
 		<!-- Logging -->
@@ -144,15 +153,6 @@
 			<version>19.13.0.0</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
-		<!-- DB Connection Pool -->
-		<!-- HikariCP -->
-		<dependency>
-			<groupId>com.zaxxer</groupId>
-			<artifactId>HikariCP</artifactId>
-			<version>5.0.1</version>
-		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
 		<!-- MyBatis(XML Mapper) -->
 		<dependency>
@@ -227,14 +227,6 @@
 					<compilerArgument>-Xlint:all</compilerArgument>
 					<showWarnings>true</showWarnings>
 					<showDeprecation>true</showDeprecation>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.2.1</version>
-				<configuration>
-					<mainClass>org.test.int1.Main</mainClass>
 				</configuration>
 			</plugin>
 		</plugins>

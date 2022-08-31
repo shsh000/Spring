@@ -77,8 +77,8 @@ public class NoticeController {
 	public String noticeSearch(NoticeVO vo, String key, String val, Model model) { 
 //		key = "1"; // title
 //		val = "스프링"; // 제목에 스프링이 있는 데이터 찾음
-		key = "3"; // writer
-		val = "박승리"; // 작성자 이름이 박승리인 데이터 찾음
+//		key = "3"; // writer
+//		val = "박승리"; // 작성자 이름이 박승리인 데이터 찾음
 		model.addAttribute("notices", ns.noticeSearch(key, val));
 		return "notice/noticeSearch";
 	}

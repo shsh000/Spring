@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<!-- AOP 설정 -->
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	<bean class="co.hee.prj.aop.AopAdvice" id="aopAdvice" />
+	
+	<!-- configuration 환경설정 -->
+	<aop:config proxy-target-class="true">
+		<!-- * : 리턴타입, co.hee.prj.. : 패키지명, *Impl : 클래스명, *(..) : 모든 메소드 -->
+		<aop:pointcut expression="execution(* co.hee.prj..*Impl.*(..))" id="allPoint"/>
+		<aop:aspect ref="aopAdvice"> <!-- aopAdvice 클래스 참조 -->
+			<!-- weaving -->
+			<aop:after-returning method="log" pointcut-ref="allPoint" />
+			<!-- 시작 로그 -->
+			<!-- <aop:before method="log" pointcut-ref="allPoint" /> --> 
+			<!-- 종료 로그 -->
+			<!-- <aop:after method="endLog" pointcut-ref="allPoint" /> -->
+		</aop:aspect>
+	</aop:config>
+		
+</beans>
