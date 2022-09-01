@@ -5,6 +5,34 @@
 <head>
 <meta charset="UTF-8">
 <title>Login Form</title>
+<style>
+h1 {
+	text-align: center;
+}
+
+table {
+	text-align: center;
+	border: 1px solid #fff;
+	border-spacing: 1px;
+	font-family: 'Cairo', sans-serif;
+	margin: auto;
+}
+
+table td {
+	padding: 10px;
+	background-color: #eee;
+	border-bottom: 1px solid #c6c9cc;
+}
+
+table th {
+	background-color: #333;
+	color: #fff;
+	padding: 10px;
+	width: 200px;
+	border-bottom: 1px solid #c6c9cc;
+}
+</style>
+<script src="resources/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<div align="center">
